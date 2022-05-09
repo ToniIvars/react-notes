@@ -1,0 +1,33 @@
+.note-preview {
+    background-color: #DEE2E6;
+    width: 220px;
+    height: 170px;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 10px;
+    position: relative;
+    transition: all 300ms ease-in-out;
+}
+
+.note-preview:hover {
+    transform: scale(110%);
+}
+
+.note-preview-title {
+    text-align: center;
+    border-bottom: 1px solid #212529;
+    margin-bottom: 0.75rem;
+}
+
+.note-preview-icon {
+    position: absolute;
+    font-size: 44px;
+    top: -12px;
+    left: 0;
+    color: gray;
+}
+
+.note-preview-content {
+    padding: 0 0.1rem;
+    color: #495057;
+}
