@@ -2,10 +2,8 @@ import React from 'react'
 import { BsPaperclip } from 'react-icons/bs'
 import '../styling/NotePreview.css'
 
-const NotePreview = ({title, content, bgColor}) => {
-  if (content.length > 97) {
-    content = content.slice(0, 97) + '...'
-  }
+const NotePreview = ({title, content, bgColor, setViewingNote}) => {
+  let previewContent = content.length <= 97 ? content : content.slice(0, 97) + '...'
 
   const darkBgColor = color => {
     color = color.slice(1)
@@ -27,10 +25,15 @@ const NotePreview = ({title, content, bgColor}) => {
   const isBgdark = darkBgColor(bgColor)
 
   return (
-    <div className='note-preview' style={{backgroundColor: bgColor}}>
+    <div className='note-preview' style={{backgroundColor: bgColor}} onClick={() => setViewingNote({
+      title: title,
+      content: content,
+      bgColor: bgColor,
+      isBgdark: isBgdark
+    })}>
       <BsPaperclip className='note-preview-icon'/>
       <h2 className={`note-preview-title ${isBgdark && 'dark-bg'}`}>{title}</h2>
-      <p className={`note-preview-content ${isBgdark && 'dark-bg'}`}>{content}</p>
+      <p className={`note-preview-content ${isBgdark && 'dark-bg'}`}>{previewContent}</p>
     </div>
   )
 }

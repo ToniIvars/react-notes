@@ -1,0 +1,74 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        scale: 1%;
+    }
+
+    to {
+        scale: 100%;
+    }
+}
+
+#viewing-note-container {
+    background-color: #49505788;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    padding-top: 100px;
+    animation: fadeIn 500ms;
+}
+
+#viewing-note-container > div {
+    max-width: 800px;
+    width: 95%;
+    margin: auto;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    animation: zoomIn 750ms;
+}
+
+#viewing-note-header {
+    font-size: 1.2rem;
+    margin: 0.25rem 0 0.6rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#viewing-note-header svg {
+    font-size: 2.25rem;
+}
+
+.note-dark-bg {
+    color: #F8F9FA;
+    border-color: #F8F9FA;
+}
+
+#viewing-note-container p {
+    line-height: 140%;
+}
