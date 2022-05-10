@@ -1,5 +1,4 @@
 .note-preview {
-    background-color: #DEE2E6;
     width: 220px;
     height: 180px;
     margin-bottom: 1.5rem;
@@ -17,6 +16,7 @@
     text-align: center;
     border-bottom: 1px solid #212529;
     margin-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
 }
 
 .note-preview-icon {
@@ -30,4 +30,13 @@
 .note-preview-content {
     padding: 0 0.1rem;
     color: #495057;
+}
+
+h2.dark-bg {
+    color: #F8F9FA;
+    border-color: #F8F9FA;
+}
+
+p.dark-bg {
+    color: #CED4DA;
 }

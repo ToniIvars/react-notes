@@ -2,7 +2,7 @@ import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 import '../styling/Header.css'
 
-function Header({ setAddingNote }) {
+const Header = ({ setAddingNote }) => {
   return (
     <div id='header-container'>
       <h1>React Notes</h1>

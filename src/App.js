@@ -1,17 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import NewNoteForm from './components/NewNoteForm'
 import NoteContainer from './components/NoteContainer'
 import './App.css';
 
-function App() {
+const App = () => {
+  const [notes, setNotes] = useState([])
   const [addingNote, setAddingNote] = useState(false)
+
+  useEffect(() => {
+    let localStorageNotes = JSON.parse(localStorage.getItem('notes'))
+
+    if (localStorageNotes) {
+      setNotes(localStorageNotes)
+    }
+  }, [])
 
   return (
     <>
-      {addingNote && <NewNoteForm setAddingNote={setAddingNote}/>}
+      {addingNote && <NewNoteForm setAddingNote={setAddingNote} setNotes={setNotes}/>}
       <Header setAddingNote={setAddingNote}/>
-      <NoteContainer/>
+      <NoteContainer notes={notes}/>
     </>
   );
 }

@@ -5,13 +5,32 @@ import '../styling/NotePreview.css'
 const NotePreview = ({title, content, bgColor}) => {
   if (content.length > 97) {
     content = content.slice(0, 97) + '...'
-  } 
+  }
+
+  const darkBgColor = color => {
+    color = color.slice(1)
+
+    const red = parseInt(color.slice(0, 2), 16)
+    const green = parseInt(color.slice(2, 4), 16)
+    const blue = parseInt(color.slice(4), 16)
+
+    const hsp = Math.sqrt(
+      0.299 * (red * red) +
+      0.587 * (green * green) +
+      0.114 * (blue * blue)
+    );
+  
+    // Using the HSP value, determine whether the color is light or dark
+    return hsp <= 127.5
+  }
+
+  const isBgdark = darkBgColor(bgColor)
 
   return (
     <div className='note-preview' style={{backgroundColor: bgColor}}>
       <BsPaperclip className='note-preview-icon'/>
-      <h2 className='note-preview-title'>{title}</h2>
-      <p className='note-preview-content'>{content}</p>
+      <h2 className={`note-preview-title ${isBgdark && 'dark-bg'}`}>{title}</h2>
+      <p className={`note-preview-content ${isBgdark && 'dark-bg'}`}>{content}</p>
     </div>
   )
 }

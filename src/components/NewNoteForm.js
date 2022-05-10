@@ -3,14 +3,10 @@ import { FaPlus } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
 import '../styling/NewNoteForm.css'
 
-const NewNoteForm = ({ setAddingNote }) => {
+const NewNoteForm = ({ setAddingNote, setNotes }) => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [color, setColor] = useState('#F2F8AD')
-
-  const formSubmit = e => {
-    e.preventDefault()
-  }
 
   const closeForm = () => {
     document.getElementById('form-container').style.animationDuration = '1s'
@@ -21,6 +17,24 @@ const NewNoteForm = ({ setAddingNote }) => {
     }, 750);
   }
 
+  const formSubmit = e => {
+    e.preventDefault()
+
+    setNotes(prevNotes => {
+      let newNotes = [...prevNotes, {
+          title: title,
+          content: content,
+          bgColor: color
+      }]
+
+      localStorage.setItem('notes', JSON.stringify(newNotes))
+
+      return newNotes
+    })
+
+    closeForm()
+  }
+
   return (
     <div id='form-container'>
       <form onSubmit={formSubmit}>
@@ -29,8 +43,8 @@ const NewNoteForm = ({ setAddingNote }) => {
           <CgClose onClick={closeForm}/>
         </div>
         
-        <input type="text" name="title" id="title" placeholder='Note title' value={title} onChange={e => setTitle(e.target.value)}/>
-        <textarea rows='10' name="content" id="content" placeholder='Note content' value={content} onChange={e => setContent(e.target.value)}/>
+        <input type="text" name="title" id="title" placeholder='Note title' value={title} onChange={e => setTitle(e.target.value)} required/>
+        <textarea rows='10' name="content" id="content" placeholder='Note content' value={content} onChange={e => setContent(e.target.value)} required/>
 
         <div id='form-last-row'>
           <div className='form-label-input'>
