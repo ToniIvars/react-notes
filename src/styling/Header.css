@@ -13,7 +13,7 @@
     text-align: center;
 }
 
-#add-note-btn {
+.add-note-btn {
     margin: 0 1.5rem;
     font-size: 1rem;
     border: none;
@@ -27,8 +27,8 @@
     transition: background-color 150ms ease-in-out;
 }
 
-#add-note-btn svg { margin-right: 0.25rem; }
+.add-note-btn svg { margin-right: 0.25rem; }
 
-#add-note-btn:hover {
+.add-note-btn:hover {
     background-color: #479F76;
 }

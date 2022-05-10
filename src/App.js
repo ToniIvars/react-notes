@@ -1,11 +1,16 @@
+import { useState } from 'react'
 import Header from './components/Header'
-import NoteContainer from './components/NoteContainer';
+import NewNoteForm from './components/NewNoteForm'
+import NoteContainer from './components/NoteContainer'
 import './App.css';
 
 function App() {
+  const [addingNote, setAddingNote] = useState(false)
+
   return (
     <>
-      <Header/>
+      {addingNote && <NewNoteForm setAddingNote={setAddingNote}/>}
+      <Header setAddingNote={setAddingNote}/>
       <NoteContainer/>
     </>
   );
