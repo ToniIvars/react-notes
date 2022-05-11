@@ -6,9 +6,9 @@ import Note from './components/Note'
 import './App.css';
 
 const App = () => {
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState({})
   const [addingNote, setAddingNote] = useState(false)
-  const [viewingNote, setViewingNote] = useState({})
+  const [viewingNote, setViewingNote] = useState('')
 
   useEffect(() => {
     let localStorageNotes = JSON.parse(localStorage.getItem('notes'))
@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       {addingNote && <NewNoteForm setAddingNote={setAddingNote} setNotes={setNotes}/>}
-      {Object.keys(viewingNote).length !== 0 && <Note setViewingNote={setViewingNote} viewingNote={viewingNote}/>}
+      {viewingNote && <Note setViewingNote={setViewingNote} viewingNote={viewingNote} notes={notes}/>}
 
       <Header setAddingNote={setAddingNote}/>
       <NoteContainer notes={notes} setViewingNote={setViewingNote}/>

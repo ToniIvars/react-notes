@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import { CgClose } from 'react-icons/cg'
+import {v4 as uuid} from 'uuid'
 import '../styling/NewNoteForm.css'
 
 const NewNoteForm = ({ setAddingNote, setNotes }) => {
@@ -21,11 +22,13 @@ const NewNoteForm = ({ setAddingNote, setNotes }) => {
     e.preventDefault()
 
     setNotes(prevNotes => {
-      let newNotes = [...prevNotes, {
+      let newNotes = {...prevNotes}
+      
+      newNotes[uuid()] = {
           title: title,
           content: content,
           bgColor: color
-      }]
+      }
 
       localStorage.setItem('notes', JSON.stringify(newNotes))
 

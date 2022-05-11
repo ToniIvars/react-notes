@@ -1,21 +1,38 @@
 import { CgClose } from 'react-icons/cg'
 import '../styling/Note.css'
 
-const Note = ({ setViewingNote, viewingNote }) => {
-  const {title, content, bgColor, isBgdark} = viewingNote
+const Note = ({ setViewingNote, viewingNote, notes }) => {
+  const {title, content, bgColor} = notes[viewingNote]
+
+  const darkBgColor = color => {
+    color = color.slice(1)
+
+    const red = parseInt(color.slice(0, 2), 16)
+    const green = parseInt(color.slice(2, 4), 16)
+    const blue = parseInt(color.slice(4), 16)
+
+    const hsp = Math.sqrt(
+      0.299 * (red * red) +
+      0.587 * (green * green) +
+      0.114 * (blue * blue)
+    );
+  
+    // Using the HSP value, determine whether the color is light or dark
+    return hsp <= 127.5
+  }
 
   const closeNote = () => {
     document.getElementById('viewing-note-container').style.animationDuration = '1s'
     document.getElementById('viewing-note-container').style.animationName = 'fadeOut'
 
     setTimeout(() => {
-      setViewingNote({})
+      setViewingNote('')
     }, 750);
   }
 
   return (
     <div id='viewing-note-container'>
-      <div className={isBgdark && 'note-dark-bg'} style={{backgroundColor: bgColor}}>
+      <div className={darkBgColor(bgColor) && 'note-dark-bg'} style={{backgroundColor: bgColor}}>
         <div id='viewing-note-header'>
           <h2>{title}</h2>
           <CgClose onClick={closeNote}/>

@@ -1,12 +1,11 @@
 import React from 'react'
 import NotePreview from './NotePreview'
-import {v4 as uuid} from 'uuid'
 import '../styling/NoteContainer.css'
 
 const NoteContainer = ({ notes, setViewingNote }) => {
   return (
     <div id='note-container'>
-      {notes.map(note => <NotePreview key={uuid()} title={note.title} content={note.content} bgColor={note.bgColor} setViewingNote={setViewingNote} />)}
+      {Object.keys(notes).map(noteUUID => <NotePreview key={noteUUID} uuid={noteUUID} title={notes[noteUUID].title} content={notes[noteUUID].content} bgColor={notes[noteUUID].bgColor} setViewingNote={setViewingNote} />)}
     </div>
   )
 }
