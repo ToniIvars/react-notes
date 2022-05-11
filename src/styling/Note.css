@@ -72,3 +72,24 @@
 #viewing-note-container p {
     line-height: 140%;
 }
+
+#remove-note-btn {
+    margin-top: 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    background-color: #DC3545;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    transition: background-color 150ms ease-in-out;
+    align-self: flex-end;
+}
+
+#remove-note-btn svg { margin-right: 0.25rem; }
+
+#remove-note-btn:hover {
+    background-color: #E35D6A;
+}

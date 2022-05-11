@@ -1,7 +1,8 @@
 import { CgClose } from 'react-icons/cg'
+import { BsEraserFill } from 'react-icons/bs'
 import '../styling/Note.css'
 
-const Note = ({ setViewingNote, viewingNote, notes }) => {
+const Note = ({ setViewingNote, viewingNote, notes, setNotes }) => {
   const {title, content, bgColor} = notes[viewingNote]
 
   const darkBgColor = color => {
@@ -19,6 +20,24 @@ const Note = ({ setViewingNote, viewingNote, notes }) => {
   
     // Using the HSP value, determine whether the color is light or dark
     return hsp <= 127.5
+  }
+
+  const removeNote = () => {
+    closeNote()
+
+    setTimeout(() => {
+      setViewingNote('')
+
+      setNotes(prevNotes => {
+        let newNotes = {...prevNotes}
+        
+        delete newNotes[viewingNote]
+
+        localStorage.setItem('notes', JSON.stringify(newNotes))
+
+        return newNotes
+      })
+    }, 750);
   }
 
   const closeNote = () => {
@@ -39,6 +58,10 @@ const Note = ({ setViewingNote, viewingNote, notes }) => {
         </div>
         
         <p>{content}</p>
+
+        <button id='remove-note-btn' onClick={removeNote}>
+          <BsEraserFill/> Remove note
+        </button>
       </div>
     </div>
   )

@@ -21,7 +21,7 @@ const App = () => {
   return (
     <>
       {addingNote && <NewNoteForm setAddingNote={setAddingNote} setNotes={setNotes}/>}
-      {viewingNote && <Note setViewingNote={setViewingNote} viewingNote={viewingNote} notes={notes}/>}
+      {viewingNote && <Note setViewingNote={setViewingNote} viewingNote={viewingNote} notes={notes} setNotes={setNotes}/>}
 
       <Header setAddingNote={setAddingNote}/>
       <NoteContainer notes={notes} setViewingNote={setViewingNote}/>
